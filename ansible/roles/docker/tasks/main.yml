@@ -1,0 +1,11 @@
+---
+- name: install docker.io via apt
+  apt:
+    name: docker.io
+    state: present
+
+- name: install docker-py via pip
+  pip:
+    name: docker-py
+    state: present
+...

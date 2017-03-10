@@ -1,0 +1,14 @@
+---
+- name: start the attendees container
+  docker_container:
+    name: attendees
+    image: "{{image}}:{{version}}"
+    state: started
+    ports:
+      - "{{app_port}}:{{app_port}}"
+    env:
+      DB_HOST: "{{db_host}}"
+      DB_NAME: "{{db_name}}"
+      DB_USER: "{{db_user}}"
+      DB_PASSWORD: "{{db_password}}"
+...

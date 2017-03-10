@@ -1,0 +1,19 @@
+---
+- name: install nginx via apt
+  apt:
+    name: nginx
+    state: present
+
+- name: remove default nginx site and notify "restart nginx"
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: restart nginx
+
+- name: add site.conf to nginx and notify "restart nginx"
+  template:
+    src: site.conf
+    dest: /etc/nginx/sites-enabled/
+    mode: 0644
+  notify: restart nginx
+...

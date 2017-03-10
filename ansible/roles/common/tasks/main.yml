@@ -1,0 +1,28 @@
+---
+- name: update cache and install python2
+  raw: >
+    sudo apt-get update
+    && sudo apt-get install -y python
+  changed_when: false
+
+- name: install apt common dependencies
+  apt:
+    name: "{{item}}"
+    state: present
+  with_items:
+  - vim
+  - python-pip
+
+- name: check if terraform is installed
+  shell: test -f /usr/bin/terraform
+  register: terraform_installed
+  failed_when: no
+  changed_when: no
+
+- debug:
+    var: terraform_installed
+
+- name: install terraform
+  shell: touch /usr/bin/terraform
+  when: terraform_installed.rc != 0
+...

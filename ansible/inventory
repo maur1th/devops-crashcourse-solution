@@ -1,0 +1,6 @@
+[front]
+# TODO
+
+[all:vars]
+ansible_user=ubuntu
+db_host=  # TODO
